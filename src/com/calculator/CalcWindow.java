@@ -47,14 +47,12 @@ public class CalcWindow extends Calc{
         btn[13].setText("1");btn[14].setText("2");btn[15].setText("3");btn[16].setText("+");
         btn[17].setText("(+/-)");btn[18].setText("0");btn[19].setText(",");btn[20].setText("=");
 
-        btn[1].addActionListener(e -> erase());
-        btn[5].addActionListener(e -> seven());btn[6].addActionListener(e -> eight());btn[7].addActionListener(e -> nine());
+        btn[1].addActionListener(e -> erase());btn[3].addActionListener(e -> percentage());btn[4].addActionListener(e -> divide());
+        btn[5].addActionListener(e -> seven());btn[6].addActionListener(e -> eight());btn[7].addActionListener(e -> nine());btn[8].addActionListener(e -> multiply());
         btn[9].addActionListener(e -> four());btn[10].addActionListener(e -> five());btn[11].addActionListener(e -> six());btn[12].addActionListener(e -> subtract());
-        btn[13].addActionListener(e -> one());btn[14].addActionListener(e -> two());btn[15].addActionListener(e -> three());
-        btn[17].addActionListener(e -> negative());btn[18].addActionListener(e -> zero());
+        btn[13].addActionListener(e -> one());btn[14].addActionListener(e -> two());btn[15].addActionListener(e -> three());btn[16].addActionListener(e -> add());
+        btn[17].addActionListener(e -> negative());btn[18].addActionListener(e -> zero());btn[19].addActionListener(e -> comma());btn[20].addActionListener(e -> equals());
 
-        btn[16].addActionListener(e -> add());
-        btn[20].addActionListener(e -> equals());
 
         btn[1].setForeground(RED);
         Color darkGreen = new Color(0, 120, 0);

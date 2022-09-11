@@ -1,13 +1,13 @@
 package com.calculator;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Calc{
     JTextArea t = new JTextArea();
 
     int totalClicks;
     void erase() {
-        /*System.out.println("Erase"+totalClicks);*/
         int eraseNum=0;
         while (eraseNum < totalClicks) {
             eraseNum += 1;
@@ -16,6 +16,10 @@ public class Calc{
     }
     void negative() {
         t.setText(t.getText() + "-");
+        totalClicks += 1;
+    }
+    void comma() {
+        t.setText(t.getText() + ",");
         totalClicks += 1;
     }
     void zero() {
@@ -60,11 +64,23 @@ public class Calc{
     }
 
     void add() {
-        t.setText(t.getText() + "+");
+        t.setText(t.getText() + " + ");
         totalClicks += 1;
     }
     void subtract() {
-        t.setText(t.getText() + "-");
+        t.setText(t.getText() + " - ");
+        totalClicks += 1;
+    }
+    void multiply() {
+        t.setText(t.getText() + " * ");
+        totalClicks += 1;
+    }
+    void divide() {
+        t.setText(t.getText() + " / ");
+        totalClicks += 1;
+    }
+    void percentage() {
+        t.setText(t.getText() + " % ");
         totalClicks += 1;
     }
 
@@ -72,18 +88,30 @@ public class Calc{
         String userInput = t.getText();
         System.out.println(userInput);
 
-        String a = userInput;
-        System.out.println(a);
-        String operators[]=a.split("[0-9]+");
-        String operands[]=a.split("[+-]");
-        int agregate = Integer.parseInt(operands[0]);
-        for(int i=1;i<operands.length;i++){
-            if(operators[i].equals("+"))
-                agregate += Integer.parseInt(operands[i]);
-            else
-                agregate -= Integer.parseInt(operands[i]);
+        String[] inputArray = userInput.split(" ");
+        double answerDouble = Double.parseDouble(inputArray[0]);
+        System.out.println(inputArray[1]);
+        for (int i=1;i<inputArray.length;i++){
+            System.out.println(Arrays.toString(inputArray));
+            System.out.println(answerDouble);
+            if (i % 2 != 0) {
+                switch (inputArray[i]) {
+                    case "+" -> answerDouble += Integer.parseInt(inputArray[i+1]);
+                    case "-" -> answerDouble -= Integer.parseInt(inputArray[i+1]);
+                    case "*" -> answerDouble *= Integer.parseInt(inputArray[i+1]);
+                    case "/" -> answerDouble /= Integer.parseInt(inputArray[i+1]);
+                    case "%" -> answerDouble *= (double) (Integer.parseInt(inputArray[i + 1])) /100;
+                }
+            }
         }
-        System.out.println(agregate);
-        t.setText(String.valueOf(agregate));
+
+        if (answerDouble % 1 == 0) {
+            long answerLong = (long)answerDouble;
+            System.out.println(answerLong);
+            t.setText(String.valueOf(answerLong));
+        } else {
+            System.out.println("answer: " + answerDouble);
+            t.setText(String.valueOf(answerDouble));
+        }
     }
 }
